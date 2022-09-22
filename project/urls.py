@@ -19,8 +19,11 @@ from django.conf import settings
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
-    path('', include('nodraft.urls')),
+    path('', include(('nodraft.urls', 'nodraft'), namespace='nodraft')),
     path('admin/', admin.site.urls),
+
+    # Browser Reload
+    path('__reload__/', include('django_browser_reload.urls')),
 ]
 
 if settings.DEBUG:

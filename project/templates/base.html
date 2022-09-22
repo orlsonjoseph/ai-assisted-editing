@@ -1,0 +1,44 @@
+{% load static %}
+{% load tailwind_tags %}
+
+<!DOCTYPE html>
+<html lang="en-US" class="h-full bg-gray-100">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1,
+            shrink-to-fit=no" />
+
+  <title> {% block title %} {% endblock %} | nodraft </title>
+  <link href="{% static 'project/img/favicon.png' %}" rel="icon" type="image/x-icon" />
+
+  {% tailwind_css %}
+  <link href="{% static '/project/css/base.css' %}" rel="stylesheet" type="text/css" />
+
+  {% block head %} {% endblock %}
+</head>
+
+<body id="page-top" class="h-full font-sans leading-normal tracking-normal">
+  {% block navigation %} {% endblock %}
+
+  {% block master %}
+  <main class="container mx-auto" role="main">
+    <!-- TODO server messages -->
+
+    {% block content %} {% endblock %}
+
+    {% block footer %} {% endblock %}
+  </main>
+  {% endblock %}
+
+  <!-- Alpine.JS -->
+  <script src="https://unpkg.com/alpinejs" defer></script>
+
+  <!-- HTMX -->
+  <script src="https://unpkg.com/htmx.org@1.8.0" defer></script>
+
+  {% block scripts %} {% endblock %}
+</body>
+
+</html>

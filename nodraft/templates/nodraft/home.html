@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Home {% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block navigation %}
+{% include 'nodraft/include/navigation.html' %}
+{% endblock %}
+
+{% block master %}
+<main class="mx-auto py-6 bg-white">
+  <!-- Replace with your content -->
+  <div class="px-4 py-6 sm:px-0">
+    <div class="h-96 rounded-lg border-4 border-dashed border-gray-200">
+      Hello
+    </div>
+  </div>
+  <!-- /End replace -->
+</main>
+<!-- Footer-->
+{% include 'nodraft/include/footer.html' %}
+{% endblock %}
+
+{% block scripts %}
+{% endblock%}
