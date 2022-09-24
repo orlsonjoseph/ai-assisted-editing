@@ -14,6 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent
 INSTALLED_APPS = [
     'nodraft.apps.NodraftConfig',
     'accounts.apps.AccountsConfig',
+    'surveys.apps.SurveysConfig',
 
     # Third-party libraries
     'django_browser_reload',
