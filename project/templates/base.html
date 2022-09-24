@@ -2,7 +2,7 @@
 {% load tailwind_tags %}
 
 <!DOCTYPE html>
-<html lang="en-US" class="h-full bg-gray-100">
+<html lang="en-US" class="h-full bg-white">
 
 <head>
   <meta charset="utf-8" />
@@ -14,17 +14,16 @@
   <link href="{% static 'project/img/favicon.png' %}" rel="icon" type="image/x-icon" />
 
   {% tailwind_css %}
-  <link href="{% static '/project/css/base.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'project/css/base.css' %}" rel="stylesheet" type="text/css" />
 
   {% block head %} {% endblock %}
 </head>
 
-<body id="page-top" class="h-full font-sans leading-normal tracking-normal">
+<body class="h-full antialiased leading-normal tracking-normal text-white font-sans gradient">
   {% block navigation %} {% endblock %}
 
   {% block master %}
-  <main class="container mx-auto" role="main">
-    <!-- TODO server messages -->
+  <main class="w-full min-h-screen text-gray-600" role="main">
 
     {% block content %} {% endblock %}
 

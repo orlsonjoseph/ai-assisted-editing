@@ -13,6 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent
 # Application definition
 INSTALLED_APPS = [
     'nodraft.apps.NodraftConfig',
+    'accounts.apps.AccountsConfig',
 
     # Third-party libraries
     'django_browser_reload',
@@ -72,6 +73,15 @@ DATABASES = {
 
 if 'test' in sys.argv or 'test_coverage' in sys.argv:
     DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
+
+# Custom authentication
+LOGIN_URL = 'accounts:login'
+
+AUTH_USER_MODEL = 'accounts.CustomUser'
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'project.backends.CustomUserModelBackend',
+]
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators

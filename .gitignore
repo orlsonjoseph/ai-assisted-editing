@@ -139,3 +139,4 @@ cython_debug/
 .imagine
 
 .DS_store
+database

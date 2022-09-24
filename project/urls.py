@@ -20,6 +20,8 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     path('', include(('nodraft.urls', 'nodraft'), namespace='nodraft')),
+    path('accounts/', include(('accounts.urls', 'accounts'), namespace='accounts')),
+
     path('admin/', admin.site.urls),
 
     # Browser Reload

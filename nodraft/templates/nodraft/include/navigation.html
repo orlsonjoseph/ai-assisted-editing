@@ -1,26 +1,45 @@
 {% load static %}
 
-<header class="shadow-sm">
-  <div class="p-4 mx-auto max-w-screen-xl">
+<header class="flex-none max-h-16">
+  <div class="py-auto mx-auto max-w-screen-xl">
     <div class="flex items-center justify-between gap-4 lg:gap-10">
       <div class="flex lg:w-0 lg:flex-1">
-        <img class="h-12 w-12 bg-gray-100 rounded-lg p-1"
+        <img class="h-12 w-12 bg-white rounded-lg p-1"
           src="{% static '/project/img/logo/nodraft-feather-250-transparent.png' %}" alt="nodraft">
       </div>
 
-      <nav class="hidden text-sm font-medium gap-8 md:flex">
-        <a class="text-gray-500" href="">About</a>
-        <a class="text-gray-500" href="">Features</a>
-        <a class="text-gray-500" href="">Pricing</a>
+      <nav class="hidden text-sm font-medium gap-12 md:flex">
+        <a href="{% url 'nodraft:home' %}" class="group text-gray-500 transition duration-300">
+          Home
+          <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-indigo-600"></span>
+        </a>
+        <a href="{% url 'nodraft:about' %}" class="group text-gray-500 transition duration-300">
+          About
+          <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-indigo-600"></span>
+        </a>
+        <a href="{% url 'nodraft:features' %}" class="group text-gray-500 transition duration-300">
+          Features
+          <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-indigo-600"></span>
+        </a>
+        <a href="{% url 'nodraft:pricing' %}" class="group text-gray-500 transition duration-300">
+          Pricing
+          <span class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-indigo-600"></span>
+        </a>
       </nav>
 
       <div class="items-center justify-end flex-1 hidden gap-4 sm:flex">
-        <a class="px-5 py-2 text-sm font-medium text-gray-500 bg-gray-100 rounded-lg" href="">
+        <a class="px-5 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 rounded-lg"
+          href="{% url 'accounts:login' %}">
           Log in
         </a>
 
-        <a class="px-5 py-2 text-sm font-medium text-white bg-fuchsia-600 rounded-lg" href="">
-          Try for free
+        <a href="{% url 'accounts:register' %}"
+          class="relative inline-flex items-center justify-center p-2 px-4 py-2 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-full shadow-xl group hover:ring-1 hover:ring-purple-500">
+          <span
+            class="absolute inset-0 w-full h-full bg-gradient-to-br from-blue-600 via-purple-600 to-pink-700"></span>
+          <span
+            class="absolute bottom-0 right-0 block w-64 h-64 mb-32 mr-4 transition duration-500 origin-bottom-left transform rotate-45 translate-x-24 bg-pink-500 rounded-full opacity-30 group-hover:rotate-90 ease"></span>
+          <span class="relative text-white text-sm">Get Started</span>
         </a>
       </div>
 

@@ -3,26 +3,28 @@
 
 {% block title %} Home {% endblock %}
 
-{% block head %}
-{% endblock %}
-
-{% block navigation %}
-{% include 'nodraft/include/navigation.html' %}
-{% endblock %}
+{% block head %} {% endblock %}
 
 {% block master %}
-<main class="mx-auto py-6 bg-white">
-  <!-- Replace with your content -->
-  <div class="px-4 py-6 sm:px-0">
-    <div class="h-96 rounded-lg border-4 border-dashed border-gray-200">
-      Hello
-    </div>
+<main class="w-full min-h-screen text-gray-600" role="main">
+
+  <div class="flex flex-col min-h-screen">
+    <!-- Navigation -->
+    {% include 'nodraft/include/navigation.html' %}
+
+    <!-- Hero -->
+    {% include 'nodraft/include/hero.html' %}
   </div>
-  <!-- /End replace -->
+
+  <!-- Features -->
+  {% include 'nodraft/include/features.html' %}
+
+  <!-- Join the waitlist -->
+
+  <!-- Footer-->
+  {% include 'nodraft/include/footer.html' %}
+
 </main>
-<!-- Footer-->
-{% include 'nodraft/include/footer.html' %}
 {% endblock %}
 
-{% block scripts %}
-{% endblock%}
+{% block scripts %} {% endblock%}
