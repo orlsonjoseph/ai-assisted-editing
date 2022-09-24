@@ -4,5 +4,20 @@
 {% block title %} Login {% endblock %}
 
 {% block content %}
-Log in
+<form hx-post="{% url 'accounts:login' %}" hx-swap="outerHTML">
+  {% csrf_token %}
+
+  <!-- email input -->
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
+  </div>
+
+  <div class="form-group">
+    <label for="id_password">Password</label>
+    <input type="password" class="form-control" id="id_password" name="password" placeholder="Password">
+  </div>
+
+  <button type="submit">Submit</button>
+</form>
 {% endblock %}
