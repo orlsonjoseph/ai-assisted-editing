@@ -44,7 +44,7 @@ pycparser==2.21
 pylev==1.4.0
 pyparsing==3.0.9
 pyrsistent==0.18.1
-pytz==2022.1
+pytz==2022.6
 requests==2.27.1
 requests-toolbelt==0.9.1
 shellingham==1.5.0
