@@ -1,0 +1,24 @@
+<section class="flex flex-auto bg-white">
+    <div class="hidden lg:block lg:w-1/2" style="clip-path: polygon(0% 0%, 100% 0%, 80% 100%, 0% 100%);">
+        <div class="h-full object-cover bg-top" style="background-image: url(https://picsum.photos/id/1062/1920/1080)">
+            <div class="h-full bg-black opacity-25"></div>
+        </div>
+    </div>
+
+    <div class="flex mx-auto items-center text-center lg:text-left px-16 md:px-24 lg:w-1/2">
+        <div class="place-self-center">
+            <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl">
+                A powerful tool to design accessible surveys</h1>
+            <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl">
+                Nodraft empowers your organization to deliver surveys that accurately capture the voices and opinions of
+                everyone
+            </p>
+            <a href="{% url 'accounts:register' %}" class="relative px-6 py-3 font-medium text-white group">
+                <span
+                    class="absolute inset-0 w-full h-full transition duration-300 ease-out transform -translate-x-1 -translate-y-1 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 group-hover:translate-x-0 group-hover:translate-y-0"></span>
+                <span class="absolute inset-0 w-full h-full border-2 border-black"></span>
+                <span class="relative text-xl">Try for free</span>
+            </a>
+        </div>
+    </div>
+</section>

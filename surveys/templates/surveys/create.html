@@ -1,0 +1,153 @@
+{% extends 'surveys/layout/base.html' %}
+{% load static %}
+
+{% block title %} Create {% endblock %}
+
+{% block content %}
+<div class="w-full min-h-screen bg-gray-50 text-gray-600">
+    <div class="container mx-auto">
+        <section class="grid grid-rows-1 grid-flow-col p-2 lg:p-4">
+            <div class="text-2xl font-semibold">
+                Create a survey
+            </div>
+
+            <nav class="mt-1">
+                <ul class="flex flex-row justify-end">
+                    <li class="mr-2">
+                        <a href="{% url 'surveys:create' %}"
+                            class="px-5 py-2.5 font-medium bg-slate-100 hover:bg-slate-200 hover:text-slate-600 text-slate-500 text-sm">
+                            Back to dashboard
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </section>
+        <section class="bg-white py-2 lg:py-4 shadow">
+            <div class="px-2 lg:px-4 mb-4 grid grid-rows-1 grid-flow-col">
+                <div class="text-lg font-semibold">
+                    New survey
+                </div>
+
+                <nav class="mt-1">
+                    <ul class="flex flex-row justify-end">
+                        <li class="mr-2">
+                            <a href="#"
+                                class="px-5 py-2.5 font-medium bg-slate-100 hover:bg-slate-200 hover:text-slate-600 text-slate-500 text-sm">
+                                Cancel
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <form hx-post="{% url 'surveys:create' %}" name="surveyForm" class="px-2 lg:px-4 flex flex-col gap-8">
+                <div class="grid grid-cols-2 grid-flow-row gap-4">
+                    <div class="space-y-2">
+                        <label for="survey_title" class="block text-sm font-medium text-gray-700">
+                            Title
+                        </label>
+                        <input type="text" name="survey_title" id="survey_title" autocomplete="survey_title"
+                            class="shadow-sm focus:ring-emerald-300 focus:border-emerald-300 block w-full sm:text-sm border-gray-300">
+
+                        <label for="survey_description" class="block text-sm font-medium text-gray-700">
+                            Description
+                        </label>
+                        <input type="text" name="survey_description" id="survey_description"
+                            class="shadow-sm focus:ring-emerald-300 focus:border-emerald-300 block w-full sm:text-sm border-gray-300">
+
+                        <label for="survey_language" class="block text-sm font-medium text-gray-700">
+                            Language
+                        </label>
+                        <select id="survey_language" name="survey_language"
+                            class="shadow-sm focus:ring-emerald-300 focus:border-emerald-300 block w-full sm:text-sm border-gray-300">
+                            <option>English</option>
+                            <option>French</option>
+                        </select>
+
+                        <div class="grid grid-cols-2 grid-flow-row gap-4" x-data="{ set_expiration_date: false }">
+                            <div class="flex items-start">
+                                <div class="flex items-center h-5">
+                                    <input id="set_expiration_date" name="set_expiration_date" type="checkbox"
+                                        x-model="set_expiration_date"
+                                        class="focus:ring-emerald-300 h-4 w-4 text-emerald-600 border-gray-300 rounded">
+                                </div>
+                                <div class="ml-3 text-sm">
+                                    <label for="set_expiration_date" class="font-medium text-gray-700">
+                                        Set expiration date
+                                    </label>
+                                    <p class="text-gray-500">
+                                        Automatically close the survey after a certain date
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="h-full">
+                                <input type="date" name="expiration_date" id="expiration_date"
+                                    x-show="set_expiration_date"
+                                    class="shadow-sm focus:ring-emerald-300 focus:border-emerald-300 block w-full sm:text-sm border-gray-300">
+                            </div>
+                        </div>
+                    </div>
+                    <fieldset class="space-y-2">
+                        <legend class="text-sm font-medium text-gray-700">Configuration</legend>
+                        <!-- Display name -->
+                        <div class="space-y-2">
+                            <label for="survey_display_name" class="block text-sm font-medium text-gray-700">
+                                Display name
+                            </label>
+                            <input type="text" name="survey_display_name" id="survey_display_name"
+                                class="shadow-sm focus:ring-emerald-300 focus:border-emerald-300 block w-full sm:text-sm border-gray-300">
+                        </div>
+                        <div class="space-y-2">
+                            <label for="survey_access" class="block text-sm font-medium text-gray-700">
+                                Access
+                            </label>
+                            <select id="survey_access" name="survey_access"
+                                class="shadow-sm focus:ring-emerald-300 focus:border-emerald-300 block w-full sm:text-sm border-gray-300">
+                                <option>Public</option>
+                                <option>Private</option>
+                            </select>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex items-center h-5">
+                                <input id="survey_anonymous" name="survey_anonymous" type="checkbox"
+                                    class="focus:ring-emerald-300 h-4 w-4 text-emerald-600 border-gray-300 rounded">
+                            </div>
+                            <div class="ml-3 text-sm">
+                                <label for="survey_anonymous" class="font-medium text-gray-700">
+                                    Allow respondents to finish later
+                                </label>
+                                <p class="text-gray-500">
+                                    Let respondents leave the survey and return later to pick up where they left off
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex items-center h-5">
+                                <input id="survey_anonymous" name="survey_anonymous" type="checkbox"
+                                    class="focus:ring-emerald-300 h-4 w-4 text-emerald-600 border-gray-300 rounded">
+                            </div>
+                            <div class="ml-3 text-sm">
+                                <label for="survey_anonymous" class="font-medium text-gray-700">
+                                    Anonymize submissions
+                                </label>
+                                <p class="text-gray-500">
+                                    Anonymous submissions will not be linked to the user who submitted the survey.
+                                </p>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <hr class="w-full">
+                <div class="flex justify-end">
+                    <button type="submit"
+                        class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500">
+                        Create
+                    </button>
+                </div>
+            </form>
+
+        </section>
+    </div>
+</div>
+{% endblock %}

@@ -13,7 +13,7 @@ class Login(TemplateView):
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            return redirect('surveys:dashboard')
+            return redirect('nodraft:dashboard')
         return render(request, self.template_name, {})
 
     def post(self, request, *args, **kwargs):
@@ -23,7 +23,7 @@ class Login(TemplateView):
         user = authenticate(email=email, password=password)
         if user is not None:
             login(request, user)
-            return redirect('surveys:dashboard')
+            return redirect('nodraft:dashboard')
 
         messages.error(request, 'Invalid Credentials')
         return render(request, self.template_name, {})

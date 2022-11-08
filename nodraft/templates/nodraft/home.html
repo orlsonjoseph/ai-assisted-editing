@@ -8,21 +8,24 @@
 {% block master %}
 <main class="w-full min-h-screen text-gray-600" role="main">
 
-  <div class="flex flex-col min-h-screen">
-    <!-- Navigation -->
-    {% include 'nodraft/include/navigation.html' %}
+    <div class="flex flex-col min-h-screen">
+        <!-- Navigation -->
+        {% include 'nodraft/partials/navigation.html' %}
 
-    <!-- Hero -->
-    {% include 'nodraft/include/hero.html' %}
-  </div>
+        <!-- Hero -->
+        {% include 'nodraft/partials/hero.html' %}
+    </div>
 
-  <!-- Features -->
-  {% include 'nodraft/include/features.html' %}
+    <!-- Content -->
+    {% include 'nodraft/partials/content.html' %}
 
-  <!-- Join the waitlist -->
+    <!-- Features -->
+    {% include 'nodraft/partials/features.html' %}
 
-  <!-- Footer-->
-  {% include 'nodraft/include/footer.html' %}
+    <!-- FAQ -->
+
+    <!-- Footer-->
+    {% include 'nodraft/partials/footer.html' %}
 
 </main>
 {% endblock %}
