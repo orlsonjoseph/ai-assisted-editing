@@ -1,7 +1,8 @@
 # nodraft app
 
 This app was bootstrapped with [Imagine.ai](https://imagine.ai) 💛
-> Imagine.ai is an app starter on steroids! 
+
+> Imagine.ai is an app starter on steroids!
 
 ### Run the app in terminal
 
@@ -12,11 +13,6 @@ $ make install
 $ make migrate
 $ make run
 ```
-
-### Make API calls against the server
-
-1. Go to [http://localhost:8000/swagger](http://localhost:8000/swagger) to see Swagger documentation for API endpoints.
-2. Run the APIs by clicking the "Try it now" button on the Swagger page.
 
 ### Run Django admin dashboard
 
@@ -43,8 +39,9 @@ $ make lint
 
 ### Learn More
 
-1. Learn more about: 
-  - the [Django architecture choices](https://imagine.ai/docs/architecture-django) used.
-  - the [best practices](https://imagine.ai/docs/best-practices) followed.
+1. Learn more about:
+
+- the [Django architecture choices](https://imagine.ai/docs/architecture-django) used.
+- the [best practices](https://imagine.ai/docs/best-practices) followed.
 
 2. Imagine is in beta - here are the [known issues](https://imagine.ai/docs/known_issues) that we are working to fix.

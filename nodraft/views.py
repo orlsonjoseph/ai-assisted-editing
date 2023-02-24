@@ -11,9 +11,5 @@ def about(request, template_name='nodraft/about.html'):
     return render(request, template_name, {})
 
 
-def features(request, template_name='nodraft/features.html'):
-    return render(request, template_name, {})
-
-
-def pricing(request, template_name='nodraft/pricing.html'):
+def stories(request, template_name='nodraft/stories.html'):
     return render(request, template_name, {})
