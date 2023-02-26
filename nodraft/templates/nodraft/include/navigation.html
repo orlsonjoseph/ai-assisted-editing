@@ -11,7 +11,7 @@
             </div>
 
             <nav class="hidden text-sm font-medium gap-12 md:flex">
-                <a href="{% url 'nodraft:home' %}" class="group text-gray-500 transition duration-300">
+                <a href="{% url 'blog:home' %}" class="group text-gray-500 transition duration-300">
                     Blog
                     <span
                         class="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-indigo-600"></span>
@@ -28,7 +28,23 @@
                 </a>
             </nav>
 
-            <div class="items-center justify-end flex-1 hidden gap-4 sm:flex">
+            <div class="items-center justify-end flex-1 hidden gap-2 sm:flex">
+                {% if user.is_authenticated %}
+                {% if user.is_superuser %}
+                <a class="px-5 py-2 text-sm font-medium bg-emerald-50 hover:bg-emerald-100 hover:text-emerald-600 text-emerald-500 rounded-lg"
+                    href="{% url 'admin:index' %}">
+                    Admin
+                </a>
+                {% endif %}
+                <a class="px-5 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 rounded-lg"
+                    href="{% url 'accounts:profile' %}">
+                    Profile
+                </a>
+                <a class="px-5 py-2 text-sm font-medium bg-red-100 hover:bg-red-200 hover:text-red-600 text-red-500 rounded-lg"
+                    href="{% url 'accounts:logout' %}">
+                    Logout
+                </a>
+                {% else %}
                 <a href="{% url 'accounts:register' %}"
                     class="relative inline-flex items-center justify-center p-2 px-4 py-2 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-full shadow-xl group hover:ring-1 hover:ring-purple-500">
                     <span
@@ -41,7 +57,9 @@
                     href="{% url 'accounts:login' %}">
                     Log in
                 </a>
+                {% endif %}
             </div>
+
 
             <div class="lg:hidden">
                 <button class="p-2 text-gray-600 bg-gray-100 rounded-lg" type="button">

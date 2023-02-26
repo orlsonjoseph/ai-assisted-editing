@@ -4,20 +4,107 @@
 {% block title %} Login {% endblock %}
 
 {% block content %}
-<form hx-post="{% url 'accounts:login' %}" hx-swap="outerHTML">
-  {% csrf_token %}
+<div class="flex min-h-full bg-gray-50">
+    <div class="flex flex-1 flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
+        <div class="mx-auto w-full max-w-sm lg:w-96">
+            <div>
+                <img class="h-12 w-auto" src="{% static '/project/img/logo/nodraft-feather-250-transparent.png' %}"
+                    alt="nodraft">
+                <h2 class="mt-6 text-3xl font-bold tracking-tight text-gray-900">Log in to your account</h2>
+            </div>
 
-  <!-- email input -->
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
-  </div>
+            <div class="mt-8">
+                <div> <!-- upper part -->
+                    <div> <!-- alternative logins -->
+                        <div class="mt-1 grid grid-cols-2 gap-2">
+                            <div>
+                                <a href="#"
+                                    class="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50">
+                                    <span class="sr-only">Sign in with Google</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" aria-label="Google" role="img"
+                                        viewBox="0 0 512 512" class="h-5 w-5">
+                                        <rect width="512" height="512" rx="15%" fill="#fff" />
+                                        <path fill="#4285f4"
+                                            d="M386 400c45-42 65-112 53-179H260v74h102c-4 24-18 44-38 57z" />
+                                        <path fill="#34a853"
+                                            d="M90 341a192 192 0 0 0 296 59l-62-48c-53 35-141 22-171-60z" />
+                                        <path fill="#fbbc02" d="M153 292c-8-25-8-48 0-73l-63-49c-23 46-30 111 0 171z" />
+                                        <path fill="#ea4335"
+                                            d="M153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55z" />
+                                    </svg>
+                                </a>
+                            </div>
 
-  <div class="form-group">
-    <label for="id_password">Password</label>
-    <input type="password" class="form-control" id="id_password" name="password" placeholder="Password">
-  </div>
+                            <div>
+                                <a href="#"
+                                    class="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50">
+                                    <span class="sr-only">Sign in with Apple</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" aria-label="Apple" role="img"
+                                        viewBox="0 0 512 512" class="h-5 w-5">
+                                        <rect width="512" height="512" rx="15%" fill="#fff" />
+                                        <path fill="#000"
+                                            d="M410 334s-10 29-30 59c-5 9-29 43-58 43-21 0-35-15-62-15-33 0-46 15-67 15-11 1-22-5-34-16-77-73-81-181-52-225 18-29 48-47 81-48 26 0 54 17 65 17 8 0 50-20 74-18 33 3 56 15 73 38-49 24-66 117 10 150zM329 56c8 32-27 93-79 90-3-43 34-87 79-90z" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
 
-  <button type="submit">Submit</button>
-</form>
+                    <div class="relative mt-6">
+                        <div class="absolute inset-0 flex items-center" aria-hidden="true">
+                            <div class="w-full border-t border-gray-300"></div>
+                        </div>
+                        <div class="relative flex justify-center text-sm">
+                            <span class="bg-gray-50 px-2 text-gray-500">OR</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6">
+                    <form class="space-y-6" hx-post="{% url 'accounts:login' %}" hx-target="outerHTML">
+                        {% csrf_token %}
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700">Email address</label>
+                            <div class="mt-1">
+                                <input id="email" name="email" type="email" autocomplete="email" required
+                                    class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                            </div>
+                        </div>
+
+                        <div class="space-y-1">
+                            <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                            <div class="mt-1">
+                                <input id="password" name="password" type="password" autocomplete="current-password"
+                                    required
+                                    class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <input id="remember-me" name="remember-me" type="checkbox"
+                                    class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                <label for="remember-me" class="ml-2 block text-sm text-gray-900">Remember me</label>
+                            </div>
+
+                            <div class="text-sm">
+                                <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">
+                                    Forgot your password?
+                                </a>
+                            </div>
+                        </div>
+
+                        <div>
+                            <button type="submit"
+                                class="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-md font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                                Log in
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}

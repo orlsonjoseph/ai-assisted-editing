@@ -13,7 +13,9 @@ BASE_DIR = Path(__file__).resolve().parent
 # Application definition
 INSTALLED_APPS = [
     'nodraft.apps.NodraftConfig',
+
     'accounts.apps.AccountsConfig',
+    'blog.apps.BlogConfig',
 
     # Third-party libraries
     'django_browser_reload',
@@ -135,12 +137,13 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Tailwind CSS configuration
 TAILWIND_APP_NAME = 'theme'
-INTERNAL_IPS = ["127.0.0.1", "nodraft.local"]
+INTERNAL_IPS = ["127.0.0.1:8000", "nodraft.local"]
 
 CSRF_COOKIE_SECURE = os.environ.get('CSRF_COOKIE_SECURE', default=False)
 SESSION_COOKIE_SECURE = os.environ.get('SESSION_COOKIE_SECURE', default=False)
 SECRET_KEY = os.environ.get(
     'DJANGO_SECRET_KEY', default='#um2g($a1-#2d(enmn!3pmg6axus*wbip_y#p!ezs0*$)(^!^o')
 ENV_ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS')
-ALLOWED_HOSTS = ENV_ALLOWED_HOSTS.split(',') if ENV_ALLOWED_HOSTS is not None else ["nodraft.local"]
+ALLOWED_HOSTS = ENV_ALLOWED_HOSTS.split(',') if ENV_ALLOWED_HOSTS is not None else [
+    "nodraft.local", "127.0.0.1"]
 DEBUG = bool(strtobool(os.environ.get('DEBUG', default='True')))
