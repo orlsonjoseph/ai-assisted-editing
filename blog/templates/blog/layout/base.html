@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block master %}
+<main class="w-full min-h-screen text-gray-600" role="main">
+
+    <!-- Navigation -->
+    {% include 'nodraft/include/navigation.html' %}
+
+    <!-- Content -->
+    {% block content %} {% endblock %}
+
+    <!-- Footer -->
+    {% include 'nodraft/include/footer.html' %}
+</main>
+{% endblock %}
+
+{% block scripts %} {% endblock%}

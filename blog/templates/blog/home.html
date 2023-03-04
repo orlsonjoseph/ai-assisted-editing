@@ -1,0 +1,21 @@
+{% extends 'blog/layout/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="mx-auto max-w-7xl py-4 px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl lg:max-w-4xl">
+        <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Beyond the GPA</h2>
+        <p class="mt-2 text-md leading-8 text-gray-600">
+            Expert Advice on Crafting an Authentic and Compelling College Application
+        </p>
+        <div class="mt-4 space-y-12 lg:mt-8 lg:space-y-12">
+            <!-- Iterate 5 times -->
+            {% for i in "12345" %}
+            {% include 'blog/include/post.html' %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %} {% endblock%}
