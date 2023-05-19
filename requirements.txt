@@ -26,7 +26,7 @@ jaraco.logging==3.1.0
 jaraco.stream==3.0.3
 jaraco.text==3.7.0
 jsonschema==4.16.0
-keyring==23.9.3
+keyring==23.13.1
 lockfile==0.12.2
 more-itertools==8.13.0
 msgpack==1.0.4
