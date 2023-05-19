@@ -147,3 +147,4 @@ node_modules/
 # Github
 .github/
 
+.vscode/
