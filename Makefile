@@ -14,7 +14,7 @@ all:
 	"
 
 installdeps:
-	python3 -m pip install poetry
+	python -m pip install poetry
 	poetry install
 
 createmigrations:
