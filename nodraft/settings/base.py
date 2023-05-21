@@ -28,7 +28,7 @@ INSTALLED_APPS = (
     [
         # Nodraft apps
         "accounts.apps.AccountsConfig",
-        "editor.apps.EditorConfig",
+        "document.apps.DocumentConfig",
         "portal.apps.PortalConfig",
     ]
     + [

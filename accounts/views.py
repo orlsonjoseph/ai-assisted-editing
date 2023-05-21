@@ -21,7 +21,7 @@ class Login(TemplateView):
         if user is not None:
             login(request, user)
             messages.success(request, "Successfully logged in.")
-            return redirect("editor:dashboard")
+            return redirect("document:dashboard")
 
         messages.error(request, "Invalid email or password.")
         return HttpResponse(status=401, reason="Invalid email or password.")
@@ -45,4 +45,4 @@ class Register(TemplateView):
         messages.success(request, "Successfully registered.")
 
         login(request, user)
-        return redirect("editor:dashboard")
+        return redirect("document:dashboard")

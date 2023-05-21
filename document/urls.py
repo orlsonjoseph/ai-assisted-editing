@@ -1,7 +1,8 @@
 from django.urls import include, path
 
-from editor.views import dashboard
+from document.views import dashboard, editor
 
 urlpatterns = [
     path("dashboard/", dashboard, name="dashboard"),
+    path("editor/<int:document_id>/", editor, name="editor"),
 ]
