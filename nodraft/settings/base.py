@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import sys
 from pathlib import Path
 
+from django.contrib import messages
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 ROOT_DIR = BASE_DIR.parent
@@ -153,6 +155,20 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 if "test" in sys.argv or "test_coverage" in sys.argv:
     DATABASES["default"]["ENGINE"] = "django.db.backends.sqlite3"
     DATABASES["default"]["NAME"] = ":memory:"
+
+# Specifies the storage backend used for messages.
+# https://docs.djangoproject.com/en/3.2/ref/settings/#message-storage
+MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
+
+# Sets the minimum message level that will be recorded by the messages framework.
+# https://docs.djangoproject.com/en/3.2/ref/settings/#message-level
+MESSAGE_LEVEL = messages.DEBUG
+
+# Sets the mapping of message levels to message tags.
+# https://docs.djangoproject.com/en/3.2/ref/settings/#message-tags
+MESSAGE_TAGS = {
+    messages.DEBUG: "alert-info",
+}
 
 # Miscellanous
 EMPTY_STRING = ""
