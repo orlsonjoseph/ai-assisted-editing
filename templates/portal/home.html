@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Home {% endblock %}
+
+{% block head %} {% endblock %}
+
+{% block master %}
+<main role="main">
+
+    <div>
+        <!-- Navigation -->
+        {% include 'portal/include/navigation.html' %}
+    </div>
+
+    <!-- Footer-->
+    {% include 'portal/include/footer.html' %}
+</main>
+{% endblock %}
+
+{% block scripts %} {% endblock%}
