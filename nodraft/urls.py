@@ -6,6 +6,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
     path(settings.EMPTY_STRING, include(("portal.urls", "portal"), namespace="portal")),
     path("accounts/", include(("accounts.urls", "accounts"), namespace="accounts")),
+    path("editor/", include(("editor.urls", "editor"), namespace="editor")),
     path("admin/", admin.site.urls),
     # Browser Reload
     path("__reload__/", include("django_browser_reload.urls")),
