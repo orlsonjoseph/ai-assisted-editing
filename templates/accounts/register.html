@@ -5,4 +5,16 @@
 
 {% block content %}
 Register
+
+<form hx-post="{% url 'accounts:register' %}" hx-swap="innerHTML" hx-target-oob="#messages">
+    {% csrf_token %}
+
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email" required>
+
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" required>
+
+    <button type="submit">Get Started</button>
+</form>
 {% endblock %}
