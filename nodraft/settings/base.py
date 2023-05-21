@@ -28,6 +28,8 @@ INSTALLED_APPS = (
     [
         # Nodraft apps
         "accounts.apps.AccountsConfig",
+        "editor.apps.EditorConfig",
+        "portal.apps.PortalConfig",
     ]
     + [
         # Third party apps
