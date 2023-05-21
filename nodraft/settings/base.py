@@ -90,7 +90,7 @@ LOGIN_URL = "accounts:login"
 AUTH_USER_MODEL = "accounts.CustomUser"
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
-    "nodraft.backends.CustomeUserModelBackend",
+    "nodraft.backends.CustomUserModelBackend",
 ]
 
 # Password validation
