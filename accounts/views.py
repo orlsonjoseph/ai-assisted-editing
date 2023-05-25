@@ -11,6 +11,8 @@ class Login(TemplateView):
     template_name = "accounts/login.html"
 
     def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect("document:list")
         return render(request, self.template_name, {})
 
     def post(self, request, *args, **kwargs):
@@ -21,7 +23,7 @@ class Login(TemplateView):
         if user is not None:
             login(request, user)
             messages.success(request, "Successfully logged in.")
-            return redirect("document:dashboard")
+            return redirect("document:list")
 
         messages.error(request, "Invalid email or password.")
         return HttpResponse(status=401, reason="Invalid email or password.")
@@ -31,6 +33,8 @@ class Register(TemplateView):
     template_name = "accounts/register.html"
 
     def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect("document:list")
         return render(request, self.template_name, {})
 
     def post(self, request, *args, **kwargs):
@@ -45,4 +49,4 @@ class Register(TemplateView):
         messages.success(request, "Successfully registered.")
 
         login(request, user)
-        return redirect("document:dashboard")
+        return redirect("document:list")
