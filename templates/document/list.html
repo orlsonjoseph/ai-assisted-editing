@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Dashboard {% endblock %}
+
+{% block content %}
+Dashboard
+
+<a href="{% url 'document:create' %}">
+    Create a new document
+</a>
+
+<ul>
+    {% for document in document_list %}
+    <li>
+        <a href="{% url 'document:show' document.id %}">{{ document.title }}</a>
+    </li>
+    {% empty %}
+    <li>No documents.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

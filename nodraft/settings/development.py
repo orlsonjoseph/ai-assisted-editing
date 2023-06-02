@@ -18,3 +18,7 @@ SECRET_KEY = "django"
 INTERNAL_IPS = ["127.0.0.1", "nodraft.local"]
 
 ALLOWED_HOSTS = INTERNAL_IPS
+
+# Miscellaneous
+
+AGGREGATION_THRESHOLD = 10

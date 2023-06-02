@@ -8,7 +8,7 @@ urlpatterns = [
         settings.EMPTY_STRING, include(("gateway.urls", "gateway"), namespace="gateway")
     ),
     path("accounts/", include(("accounts.urls", "accounts"), namespace="accounts")),
-    path("editor/", include(("editor.urls", "editor"), namespace="editor")),
+    path("document/", include(("document.urls", "document"), namespace="document")),
     path("admin/", admin.site.urls),
     # Browser Reload
     path("__reload__/", include("django_browser_reload.urls")),

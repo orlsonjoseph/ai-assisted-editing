@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} {{ document.title }} {% endblock %}
+
+{% block head %}
+<!-- Quill JS stylesheet -->
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+Editor
+
+<!-- Create the editor container -->
+<div id="editor" data-url="{% url 'document:update' document.id %}"></div>
+
+<!-- Define API url to retrive content -->
+<input type="hidden" id="server-content" value="{{ content }}">
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+<script src="{% static 'document/js/request.js' %}"></script>
+<script src="{% static 'document/js/show.js' %}"></script>
+{% endblock %}

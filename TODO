@@ -1,3 +1,7 @@
 - Implement full support for messages middleware
 - Inherit Django class based view for authentication
 - Logout view
+
+Advanced
+
+- Database routing
