@@ -1,7 +1,9 @@
 
 // When the document is ready, create a new Quill instance and set the theme to 'snow'
 $(document).ready(function () {
-    const requestURL = $('#editor').data('url');
+    const updateURL = $('#editor').data('url-update');
+    const showURL = $('#editor').data('url-show');
+
     const csrftoken = Cookies.get('csrftoken');
 
     var quill = new Quill('#editor', {
@@ -18,12 +20,16 @@ $(document).ready(function () {
 
         formData.append('csrfmiddlewaretoken', csrftoken);
 
-        customRequest(requestURL, formData, function (json) {
+        customRequest(updateURL, formData, function (json) {
             console.log(json);
         });
     });
 
     // Get the document content from the server
-    let content = $('#server-content').val();
-    quill.setContents(content, 'api');
+    let formData = new FormData();
+    formData.append('csrfmiddlewaretoken', csrftoken);
+
+    customRequest(showURL, formData, function (content) {
+        quill.setContents(JSON.parse(content), 'api');
+    });
 });

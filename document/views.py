@@ -35,16 +35,14 @@ class DocumentShowView(DocumentBaseView, View):
     template_name = "document/show.html"
 
     def get(self, request, pk):
-        current_document = self.model.objects.get(pk=pk)
+        document = self.model.objects.get(pk=pk)
+        context = {"document": document}
+        return render(request, self.template_name, context)
 
-        content = current_document.get_content()
-        content = json.dumps(content)
-
-        return render(
-            request,
-            self.template_name,
-            {"document": current_document, "content": content},
-        )
+    def post(self, request, pk):
+        if request.method == "POST":
+            content = self.model.objects.get(pk=pk).get_content()
+            return JsonResponse(content, safe=False)
 
 
 class DocumentDeleteView(DocumentBaseView, DeleteView):

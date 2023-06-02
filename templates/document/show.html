@@ -12,10 +12,9 @@
 Editor
 
 <!-- Create the editor container -->
-<div id="editor" data-url="{% url 'document:update' document.id %}"></div>
-
-<!-- Define API url to retrive content -->
-<input type="hidden" id="server-content" value="{{ content }}">
+<div id="editor" data-url-update="{% url 'document:update' document.id %}"
+    data-url-show="{% url 'document:show' document.id %}">
+</div>
 {% endblock %}
 
 {% block scripts %}

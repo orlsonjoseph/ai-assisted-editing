@@ -4,6 +4,11 @@ from delta import Delta
 import json
 
 
+class Delta(Delta):
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__, sort_keys=True, indent=4)
+
+
 class Change(models.Model):
     snapshot = models.ForeignKey(
         "Snapshot", related_name="changes", on_delete=models.CASCADE
@@ -27,7 +32,4 @@ class Change(models.Model):
     def get_content(self):
         delta = Delta(self.content["ops"]).compose(Delta(self.operations["ops"]))
 
-        to_serialize = f"'ops': {delta.ops}"
-        to_serialize = "{" + to_serialize + "}"
-
-        return to_serialize
+        return delta.toJSON()
