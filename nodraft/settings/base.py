@@ -29,7 +29,7 @@ INSTALLED_APPS = (
         # Nodraft apps
         "accounts.apps.AccountsConfig",
         "document.apps.DocumentConfig",
-        "portal.apps.PortalConfig",
+        "gateway.apps.GatewayConfig",
     ]
     + [
         # Third party apps

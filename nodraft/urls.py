@@ -4,7 +4,9 @@ from django.conf import settings
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
-    path(settings.EMPTY_STRING, include(("portal.urls", "portal"), namespace="portal")),
+    path(
+        settings.EMPTY_STRING, include(("gateway.urls", "gateway"), namespace="gateway")
+    ),
     path("accounts/", include(("accounts.urls", "accounts"), namespace="accounts")),
     path("document/", include(("document.urls", "document"), namespace="document")),
     path("admin/", admin.site.urls),
