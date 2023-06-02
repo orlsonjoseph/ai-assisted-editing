@@ -29,3 +29,7 @@ class Document(models.Model):
             return self.versions.order_by("-sequence").first()
 
         return None
+
+    def get_content(self):
+        latest_version = self.get_latest_version()
+        return latest_version.get_content() if latest_version else None

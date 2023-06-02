@@ -8,6 +8,8 @@ class Version(models.Model):
 
     sequence = models.PositiveIntegerField(default=1)
 
+    content = models.JSONField(blank=True, null=True)
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -23,3 +25,10 @@ class Version(models.Model):
             return self.snapshots.order_by("-sequence").first()
 
         return None
+
+    def get_content(self):
+        latest_snapshot = self.get_latest_snapshot()
+        if latest_snapshot and latest_snapshot.aggregated:
+            return self.content
+
+        return latest_snapshot.get_content() if latest_snapshot else None

@@ -9,7 +9,7 @@ from .aggregate_snapshot import aggregate_snapshot
 THRESHOLD = settings.AGGREGATION_THRESHOLD
 
 
-def update_document(document, delta, state):
+def update_document(document, operations, content):
     latest_version = document.get_latest_version() or create_version(document)
     latest_snapshot = latest_version.get_latest_snapshot() or create_snapshot(
         latest_version
@@ -21,14 +21,14 @@ def update_document(document, delta, state):
 
     latest_change = latest_snapshot.get_latest_change()
     if not latest_change:
-        return create_change(latest_snapshot, delta, state)
+        return create_change(latest_snapshot, operations, content)
 
     # IF the sequence is less than the threshold, create the next change
     if latest_change.sequence < THRESHOLD:
-        return create_next_change(latest_snapshot, delta, state)
+        return create_next_change(latest_snapshot, operations, content)
 
     # IF the sequence is equal or greater to the threshold, aggregate the snapshot
     aggregate_snapshot(latest_snapshot)
 
     latest_snapshot = create_next_snapshot(latest_version)
-    return create_change(latest_snapshot, delta, state)
+    return create_change(latest_snapshot, operations, content)

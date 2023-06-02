@@ -8,16 +8,13 @@ $(document).ready(function () {
         theme: 'snow'
     });
 
-    // Listen to the 'text-change' event and send AJAX request to the server
-    // delta: changes made to the document
-    // state: state of the document before the change
-    // source: source of the change
+    quill.on('text-change', function (operations, content, source) {
+        if (source === 'api') return;
 
-    quill.on('text-change', function (delta, state, source) {
         let formData = new FormData();
 
-        formData.append('delta', JSON.stringify(delta));
-        formData.append('state', JSON.stringify(state));
+        formData.append('operations', JSON.stringify(operations));
+        formData.append('content', JSON.stringify(content));
 
         formData.append('csrfmiddlewaretoken', csrftoken);
 
@@ -25,4 +22,8 @@ $(document).ready(function () {
             console.log(json);
         });
     });
+
+    // Get the document content from the server
+    let content = $('#server-content').val();
+    quill.setContents(content, 'api');
 });

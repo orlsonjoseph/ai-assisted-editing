@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %} Title of Document {% endblock %}
+{% block title %} {{ document.title }} {% endblock %}
 
 {% block head %}
 <!-- Quill JS stylesheet -->
@@ -12,7 +12,10 @@
 Editor
 
 <!-- Create the editor container -->
-<div id="editor" data-url="{% url 'document:update' 1 %}"></div>
+<div id="editor" data-url="{% url 'document:update' document.id %}"></div>
+
+<!-- Define API url to retrive content -->
+<input type="hidden" id="server-content" value="{{ content }}">
 {% endblock %}
 
 {% block scripts %}

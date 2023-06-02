@@ -25,14 +25,18 @@ class Snapshot(models.Model):
     def __str__(self):
         return f"Snapshot {self.sequence} of {self.version}"
 
-    # Once a snapshot has reached the threshold, it will be aggregated
+    # TODO: Once a snapshot has reached the threshold, it will be aggregated
     # An aggregated snapshot will be frozen and will not be updated
-    def save(self, *args, **kwargs):
-        if not self.aggregated:
-            super(Snapshot, self).save(*args, **kwargs)
+    # def save(self, override=False, *args, **kwargs):
+    #     if not self.aggregated or override:
+    #         super(Snapshot, self).save(*args, **kwargs)
 
     def get_latest_change(self):
         if hasattr(self, "changes") and self.changes.exists():
             return self.changes.order_by("-sequence").first()
 
         return None
+
+    def get_content(self):
+        latest_change = self.get_latest_change()
+        return latest_change.get_content() if latest_change else None

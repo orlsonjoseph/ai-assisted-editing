@@ -29,10 +29,22 @@ class DocumentListView(DocumentBaseView, ListView):
         return self.model.objects.filter(owner=self.request.user)
 
 
-class DocumentShowView(DocumentBaseView, DetailView):
+class DocumentShowView(DocumentBaseView, View):
     """View to show a particular document"""
 
     template_name = "document/show.html"
+
+    def get(self, request, pk):
+        current_document = self.model.objects.get(pk=pk)
+
+        content = current_document.get_content()
+        content = json.dumps(content)
+
+        return render(
+            request,
+            self.template_name,
+            {"document": current_document, "content": content},
+        )
 
 
 class DocumentDeleteView(DocumentBaseView, DeleteView):
@@ -56,16 +68,14 @@ class DocumentCreateView(DocumentBaseView, View):
 @login_required
 def update(request, pk, template_name=None):
     if request.method == "POST":
-        delta = request.POST.get("delta")
-        delta = json.loads(delta)
+        operations = request.POST.get("operations")
+        operations = json.loads(operations)
 
-        state = request.POST.get("state")
-        state = json.loads(state)
-
-        print(delta, state)
+        content = request.POST.get("content")
+        content = json.loads(content)
 
         current_document = Document.objects.get(pk=pk)
-        services.update_document(current_document, delta, state)
+        services.update_document(current_document, operations, content)
 
         return JsonResponse({"status": "ok"})
     return JsonResponse({"status": "error"})

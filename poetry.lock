@@ -29,6 +29,16 @@ files = [
 pycodestyle = ">=2.10.0"
 
 [[package]]
+name = "diff-match-patch"
+version = "20181111"
+description = "Repackaging of Google's Diff Match and Patch libraries. Offers robust algorithms to perform the operations required for synchronizing plain text."
+optional = false
+python-versions = "*"
+files = [
+    {file = "diff-match-patch-20181111.tar.gz", hash = "sha256:a809a996d0f09b9bbd59e9bbd0b71eed8c807922512910e05cbd3f9480712ddb"},
+]
+
+[[package]]
 name = "django"
 version = "4.2.1"
 description = "A high-level Python web framework that encourages rapid development and clean, pragmatic design."
@@ -129,6 +139,23 @@ files = [
 ]
 
 [[package]]
+name = "quill-delta"
+version = "1.0.3"
+description = "Python port of the quill.js delta library that enables operational transformation with aditional functionality for rendering html"
+optional = false
+python-versions = ">=3.6,<4.0"
+files = [
+    {file = "quill-delta-1.0.3.tar.gz", hash = "sha256:937b67725489b5406038715897a5f2795eda3d4dd85f4d9fcebbc9c22462523a"},
+    {file = "quill_delta-1.0.3-py3-none-any.whl", hash = "sha256:d2fbdcb04231d16108487862136e5170c2fbfc8051519f20a6ac455a6f4fd301"},
+]
+
+[package.dependencies]
+diff-match-patch = ">=20181111.0,<20181112.0"
+
+[package.extras]
+html = ["cssutils (>=1.0,<2.0)", "lxml (>=4.3,<5.0)"]
+
+[[package]]
 name = "sqlparse"
 version = "0.4.4"
 description = "A non-validating SQL parser."
@@ -172,4 +199,4 @@ brotli = ["Brotli"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "f4d978f50e86cd6575c22c3ef5f088764a1ee1bf5c44a966aa8bdd53f3d71236"
+content-hash = "4a80787d2cd78dc9d4dc7305760f9e6bfb101094dfba8b0c2e8319f62678917a"
