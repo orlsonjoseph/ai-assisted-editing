@@ -19,6 +19,7 @@ $(document).ready(function () {
         formData.append('content', JSON.stringify(content));
 
         formData.append('csrfmiddlewaretoken', csrftoken);
+        formData.append('target', 'content');
 
         customRequest(updateURL, formData, function (json) {
             console.log(json);
@@ -38,8 +39,6 @@ $(document).ready(function () {
     // Clear the title on focus
     $('#title').on('focus', function () {
         previousDocumentTitle = $(this).text();
-
-        $(this).empty();
     });
 
     // Change or reset on blue
@@ -58,6 +57,7 @@ $(document).ready(function () {
         let formData = new FormData();
 
         formData.append('title', newDocumentTitle);
+        formData.append('target', 'title');
         formData.append('csrfmiddlewaretoken', csrftoken);
 
         customRequest(updateURL, formData, function (json) {
