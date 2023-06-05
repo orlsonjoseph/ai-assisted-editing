@@ -55,25 +55,41 @@ class DocumentCreateView(DocumentBaseView, View):
     """View to create a new document"""
 
     def get(self, request):
-        services.create_document(request.user)
+        self.object = services.create_document(request.user)
         return redirect(self.get_success_url())
 
     def get_success_url(self):
-        return reverse_lazy("document:show", kwargs={"document_id": self.object.pk})
+        return reverse_lazy("document:show", kwargs={"pk": self.object.pk})
 
 
 # AJAX view for updating a document
 @login_required
 def update(request, pk, template_name=None):
     if request.method == "POST":
-        operations = request.POST.get("operations")
-        operations = json.loads(operations)
+        current_document = Document.objects.get(pk=pk)
 
-        content = request.POST.get("content")
-        content = json.loads(content)
+        if "operations" in request.POST and "content" in request.POST:
+            operations = json.loads(request.POST.get("operations"))
+            content = json.loads(request.POST.get("content"))
+
+            services.update_document(current_document, operations, content)
+        else:
+            new_document_title = request.POST.get("title")
+            services.update_document_title(current_document, new_document_title)
+
+        return JsonResponse({"status": "ok"})
+    return JsonResponse({"status": "error"})
+
+
+# AJAX view for document title update
+def update_title(request, pk, template_name=None):
+    if request.method == "POST":
+        title = request.POST.get("title")
 
         current_document = Document.objects.get(pk=pk)
-        services.update_document(current_document, operations, content)
+
+        current_document.title = title
+        current_document.save()
 
         return JsonResponse({"status": "ok"})
     return JsonResponse({"status": "error"})

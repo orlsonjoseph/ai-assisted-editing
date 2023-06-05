@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block content %}
-Editor
+<h1 contenteditable="true" id="title">{{ document.title }}</h1>
 
 <!-- Create the editor container -->
 <div id="editor" data-url-update="{% url 'document:update' document.id %}"
