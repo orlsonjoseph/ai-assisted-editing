@@ -72,36 +72,33 @@ class DocumentCreateView(DocumentBaseView, View):
 
 
 @login_required
-def update(request, pk, template_name=None):
+def edit(request, pk, template_name=None):
     if request.method == "POST":
         current_document = Document.objects.get(pk=pk)
-        target = request.POST.get("target")
 
-        if target == "title":
-            title = request.POST.get("title")
+        operations, content = request.POST.get("operations"), request.POST.get(
+            "content"
+        )
 
-            DocumentService().update_title(current_document, title)
-        elif target == "content":
-            operations = request.POST.get("operations")
-            operations = json.loads(operations)
+        operations = json.loads(operations)
+        content = json.loads(content)
 
-            content = request.POST.get("content")
-            content = json.loads(content)
+        DocumentService().update_document(current_document, operations, content)
 
-            DocumentService().update_document(current_document, operations, content)
-        else:
-            return JsonResponse({"status": "error"})
         return JsonResponse({"status": "ok"})
+    return JsonResponse({"status": "error"})
 
 
 # update title
 # put url in title element
 # refactor javascript code to isolate components
+# update title also updates the page title with the document
 @login_required
-def update_title(request, pk, template_name=None):
+def update(request, pk, template_name=None):
     if request.method == "POST":
         current_document = Document.objects.get(pk=pk)
         title = request.POST.get("title")
 
         DocumentService().update_title(current_document, title)
         return JsonResponse({"status": "ok"})
+    return JsonResponse({"status": "error"})
