@@ -1,7 +1,7 @@
 
 // When the document is ready, create a new Quill instance and set the theme to 'snow'
 $(document).ready(function () {
-    const updateURL = $('#editor').data('url-update');
+    const editURL = $('#editor').data('url-edit');
     const showURL = $('#editor').data('url-show');
 
     const csrftoken = Cookies.get('csrftoken');
@@ -20,7 +20,7 @@ $(document).ready(function () {
 
         formData.append('csrfmiddlewaretoken', csrftoken);
 
-        customRequest(updateURL, formData, function (json) {
+        customRequest(editURL, formData, function (json) {
             console.log(json);
         });
     });
@@ -31,37 +31,5 @@ $(document).ready(function () {
 
     customRequest(showURL, formData, function (content) {
         quill.setContents(JSON.parse(content), 'api');
-    });
-
-    let previousDocumentTitle = null;
-
-    // Clear the title on focus
-    $('#title').on('focus', function () {
-        previousDocumentTitle = $(this).text();
-
-        $(this).empty();
-    });
-
-    // Change or reset on blue
-    $('#title').on('blur', function () {
-        let newDocumentTitle = $(this).text()
-
-        if (newDocumentTitle === '') {
-            // Restore previous title
-            $(this).text(previousDocumentTitle);
-            return;
-        }
-
-        newDocumentTitle = newDocumentTitle.trim();
-
-        // Send update request to server
-        let formData = new FormData();
-
-        formData.append('title', newDocumentTitle);
-        formData.append('csrfmiddlewaretoken', csrftoken);
-
-        customRequest(updateURL, formData, function (json) {
-            console.log(json);
-        });
     });
 });

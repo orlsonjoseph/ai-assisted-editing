@@ -8,6 +8,7 @@ from document.views import (
     DocumentShowView,
     DocumentDeleteView,
     # Function based views
+    edit,
     update,
 )
 
@@ -16,5 +17,6 @@ urlpatterns = [
     path("create/", DocumentCreateView.as_view(), name="create"),
     path("<int:pk>/show/", DocumentShowView.as_view(), name="show"),
     path("<int:pk>/delete/", DocumentDeleteView.as_view(), name="delete"),
+    path("<int:pk>/edit/", edit, name="edit"),
     path("<int:pk>/update/", update, name="update"),
 ]

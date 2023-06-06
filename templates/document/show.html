@@ -12,8 +12,8 @@
 <h1 contenteditable="true" id="title">{{ document.title }}</h1>
 
 <!-- Create the editor container -->
-<div id="editor" data-url-update="{% url 'document:update' document.id %}"
-    data-url-show="{% url 'document:show' document.id %}">
+<div id="editor" data-url-edit="{% url 'document:edit' document.id %}"
+    data-url-update="{% url 'document:update' document.id %}" data-url-show="{% url 'document:show' document.id %}">
 </div>
 {% endblock %}
 
@@ -22,4 +22,5 @@
 
 <script src="{% static 'document/js/request.js' %}"></script>
 <script src="{% static 'document/js/show.js' %}"></script>
+<script src="{% static 'document/js/document.js' %}"></script>
 {% endblock %}

@@ -10,8 +10,13 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
 from .models import Document
+from .services import (
+    ChangeService,
+    DocumentService,
+    SnapshotService,
+    VersionService,
+)
 
-import document.services as services
 import json
 
 
@@ -55,7 +60,7 @@ class DocumentCreateView(DocumentBaseView, View):
     """View to create a new document"""
 
     def get(self, request):
-        self.object = services.create_document(request.user)
+        self.object = DocumentService().create(request.user)
         return redirect(self.get_success_url())
 
     def get_success_url(self):
@@ -63,33 +68,37 @@ class DocumentCreateView(DocumentBaseView, View):
 
 
 # AJAX view for updating a document
+# TODO unsafe keys from client
+
+
 @login_required
-def update(request, pk, template_name=None):
+def edit(request, pk, template_name=None):
     if request.method == "POST":
         current_document = Document.objects.get(pk=pk)
 
-        if "operations" in request.POST and "content" in request.POST:
-            operations = json.loads(request.POST.get("operations"))
-            content = json.loads(request.POST.get("content"))
+        operations, content = request.POST.get("operations"), request.POST.get(
+            "content"
+        )
 
-            services.update_document(current_document, operations, content)
-        else:
-            new_document_title = request.POST.get("title")
-            services.update_document_title(current_document, new_document_title)
+        operations = json.loads(operations)
+        content = json.loads(content)
+
+        DocumentService().update_document(current_document, operations, content)
 
         return JsonResponse({"status": "ok"})
     return JsonResponse({"status": "error"})
 
 
-# AJAX view for document title update
-def update_title(request, pk, template_name=None):
+# update title
+# put url in title element
+# refactor javascript code to isolate components
+# update title also updates the page title with the document
+@login_required
+def update(request, pk, template_name=None):
     if request.method == "POST":
+        current_document = Document.objects.get(pk=pk)
         title = request.POST.get("title")
 
-        current_document = Document.objects.get(pk=pk)
-
-        current_document.title = title
-        current_document.save()
-
+        DocumentService().update_title(current_document, title)
         return JsonResponse({"status": "ok"})
     return JsonResponse({"status": "error"})
