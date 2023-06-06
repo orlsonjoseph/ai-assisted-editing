@@ -30,4 +30,15 @@ $(document).ready(function () {
             $(document).prop('title', prefix + ' | ' + newDocumentTitle);
         });
     });
+
+    $("#title").on("keydown", function (e) {
+        // Prevent enter key from inserting new line
+        // cross-browser compatibility
+        let key = e.keyCode || e.charCode;
+        if (key == 13) {
+            e.preventDefault();
+
+            $(this).blur();
+        }
+    });
 });
