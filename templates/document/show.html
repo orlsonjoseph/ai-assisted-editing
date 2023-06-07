@@ -6,6 +6,9 @@
 {% block head %}
 <!-- Quill JS stylesheet -->
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+<!-- Custom stylesheet -->
+<link href="{% static 'document/css/highlight.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
@@ -15,6 +18,10 @@
 <div id="editor" data-url-edit="{% url 'document:edit' document.id %}"
     data-url-update="{% url 'document:update' document.id %}" data-url-show="{% url 'document:show' document.id %}">
 </div>
+
+<!-- Highlight menu -->
+{% include 'document/include/highlight.html' %}
+
 {% endblock %}
 
 {% block scripts %}

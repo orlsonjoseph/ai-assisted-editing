@@ -1,0 +1,42 @@
+#highlight {
+    display: none;
+    padding: 12px;
+
+    background: rgba(0, 0, 0, .8);
+    color: #fff;
+
+    position: absolute;
+    font-size: 13px;
+
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
+
+#highlight .options {
+    width: 100%;
+
+    padding: 0px;
+    margin: 0px;
+}
+
+#highlight .options li {
+    display: inline;
+}
+
+#highlight .caret {
+    display: block;
+
+    position: absolute;
+
+    top: 40px;
+    left: 45%;
+
+    width: 0px;
+    height: 0px;
+
+    border-style: solid;
+    border-width: 4px 4px 0px 4px;
+    border-color: transparent;
+    border-top-color: rgba(0, 0, 0, .8);
+}

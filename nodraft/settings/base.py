@@ -15,6 +15,8 @@ from pathlib import Path
 
 from django.contrib import messages
 
+from nodraft.keys import OPENAI_API_KEY
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 ROOT_DIR = BASE_DIR.parent
@@ -96,6 +98,11 @@ AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
     "nodraft.backends.CustomUserModelBackend",
 ]
+
+# Secret key and API keys
+SECRET_KEYS = {
+    "OPENAI_API_KEY": OPENAI_API_KEY,
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
