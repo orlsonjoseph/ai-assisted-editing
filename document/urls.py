@@ -10,6 +10,8 @@ from document.views import (
     # Function based views
     edit,
     update,
+    # API endpoints
+    rephrase,
 )
 
 urlpatterns = [
@@ -19,4 +21,6 @@ urlpatterns = [
     path("<int:pk>/delete/", DocumentDeleteView.as_view(), name="delete"),
     path("<int:pk>/edit/", edit, name="edit"),
     path("<int:pk>/update/", update, name="update"),
+    # API endpoints
+    path("<int:pk>/api/rephrase/", rephrase, name="rephrase"),
 ]

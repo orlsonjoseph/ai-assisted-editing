@@ -11,6 +11,7 @@ django = "^4.2.1"
 whitenoise = "^6.4.0"
 django-browser-reload = "^1.8.0"
 quill-delta = "^1.0.3"
+openai = "^0.27.8"
 
 
 [tool.poetry.group.dev.dependencies]
