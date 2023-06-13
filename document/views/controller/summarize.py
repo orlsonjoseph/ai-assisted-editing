@@ -1,19 +1,17 @@
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 
-from .include import generate_request
+# from .include import generate_request
 
 
 @login_required
-def rephrase(request, pk, template_name=None, endpoint="rephrase"):
+def summarize(request, pk, template_name=None, endpoint="summarize"):
     content = request.POST.get("content")
 
     response = generate_request(content, endpoint)
     response = response["choices"]
 
-    for item in response:
-        item["text"] = item["text"].strip()
-
+    # TODO handle sad paths and not return primary key in context
     return JsonResponse(
         {
             "status": "ok",

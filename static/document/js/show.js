@@ -50,14 +50,20 @@ $(document).ready(function () {
 
     });
 
-    $('#highlight ul li[data-fx="rephrase"]').on('click', function () {
+    $('#highlight ul li').on('click', function () {
+        // Hide the contextual menu
+        $('#highlight').hide()
+
         var apiURL = $(this).data('url'), formData = new FormData();
 
         formData.append('content', selectedText);
         formData.append('csrfmiddlewaretoken', csrftoken);
 
         customRequest(apiURL, formData, function (json) {
-            console.log(json);
+            // Add the annotation to the response list
+            json["response"].forEach(element => {
+                $('#response').append('<li>' + element["text"] + '</li>');
+            });
         });
     });
 

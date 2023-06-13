@@ -2,8 +2,17 @@
 
 <div id="highlight">
     <ul class="options">
+        <li data-url="{% url 'document:complete' document.id %}" data-fx="complete">
+            Complete
+        </li>
+        <li data-url="{% url 'document:proofread' document.id %}" data-fx="proofread">
+            Proofread
+        </li>
         <li data-url="{% url 'document:rephrase' document.id %}" data-fx="rephrase">
             Rephrase
+        </li>
+        <li data-url="{% url 'document:summarize' document.id %}" data-fx="summarize">
+            Summarize
         </li>
     </ul>
 

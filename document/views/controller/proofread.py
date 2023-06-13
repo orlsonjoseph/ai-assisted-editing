@@ -5,14 +5,11 @@ from .include import generate_request
 
 
 @login_required
-def rephrase(request, pk, template_name=None, endpoint="rephrase"):
+def proofread(request, pk, template_name=None, endpoint="proofread"):
     content = request.POST.get("content")
 
     response = generate_request(content, endpoint)
     response = response["choices"]
-
-    for item in response:
-        item["text"] = item["text"].strip()
 
     return JsonResponse(
         {

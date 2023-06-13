@@ -1,0 +1,8 @@
+#response {
+    padding: 16px;
+    margin: 4px 0;
+
+    font-size: 12px;
+    border: 1px solid #ccc;
+    border-radius: 0;
+}
